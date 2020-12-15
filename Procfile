@@ -1,1 +1,1 @@
-web: gunicorn <project_dir>.wsgi
+web: gunicorn foster_closet.wsgi

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_extensions',
     "rest_framework",
+    ''
 
 
     # Project-specific
@@ -89,6 +90,10 @@ WSGI_APPLICATION = 'foster_closet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
+
+
+# Heroku Option
 DATABASES = {'default': env.db()}
 
 # Password validation
@@ -144,5 +149,6 @@ INTERNAL_IPS = [
 
 # Configure Django App for Heroku.
 import django_heroku
+
 django_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']
