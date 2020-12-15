@@ -1,5 +1,5 @@
-from core.models import User, Registry, TravelItem
-from api.serializers import UserSerializer, RegistrySerializer, TravelItemSerializer
+from core.models import User, Registry, Item
+from api.serializers import UserSerializer, RegistrySerializer, ItemSerializer
 from rest_framework import generics, permissions
 from rest_framework.exceptions import PermissionDenied
 
@@ -30,8 +30,8 @@ class RegistryListView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Registry.objects.filter(user=self.request.user)
 
-class TravelItemCreateView(generics.CreateAPIView): 
-    queryset = TravelItem.objects.all()
+class ItemCreateView(generics.CreateAPIView): 
+    queryset = Item.objects.all()
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
@@ -41,17 +41,17 @@ class TravelItemCreateView(generics.CreateAPIView):
         serializer.save()
 
 
-# class TravelItemListView(generics.ListView):
-#     serializer_class = TravelItemSerializer
-#     queryset = TravelItem.objects.all()
+# class ItemListView(generics.ListView):
+#     serializer_class = ItemSerializer
+#     queryset = Item.objects.all()
     
    
-class TravelItemDetailView(generics.RetrieveUpdateDestroyAPIView):
+class ItemDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    serializer_class = TravelItemSerializer
+    serializer_class = ItemSerializer
 
 
     def get_queryset(self):
-        return TravelItem.objects.filter(registry__user=self.request.user)
+        return Item.objects.filter(registry__user=self.request.user)
     
     

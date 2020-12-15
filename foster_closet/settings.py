@@ -34,6 +34,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#Specify which sites can make requests
+CORS_ALLOW_ALL_ORIGINS = True
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -48,7 +52,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_extensions',
     "rest_framework",
-    ''
+    'corsheaders',
 
 
     # Project-specific
@@ -60,11 +64,13 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'foster_closet.urls'

@@ -14,7 +14,7 @@ class Registry(models.Model):
     time_made = models.DateTimeField(auto_now_add=True, null=True)
 
 
-class TravelItem(models.Model):
+class Item(models.Model):
     registry = models.ForeignKey(to='Registry', on_delete=models.CASCADE, related_name='requests')
     #TYPE_CHOICES = [('front-facing'), ('rear-facing'), ('both')]
     description = models.CharField(null=True, blank=True, max_length=100)

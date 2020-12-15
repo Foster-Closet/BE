@@ -23,8 +23,8 @@ urlpatterns = [
     path('api/user', api_views.UserCreateView.as_view()),
     path('api/user/<int:pk>', api_views.UserDetailView.as_view()),
     path('api/registry', api_views.RegistryListView.as_view()),
-    path('api/travel-item', api_views.TravelItemCreateView.as_view()),
-    path('api/travel-item/<int:pk>', api_views.TravelItemDetailView.as_view()),
+    path('api/item', api_views.ItemCreateView.as_view()),
+    path('api/item/<int:pk>', api_views.ItemDetailView.as_view()),
 
 ]
 
