@@ -20,9 +20,11 @@ from api import views as api_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/user', api_views.UserCreate.as_view()),
-    path('api/user/<str:username>', api_views.UserDetail.as_view()),
-    path('api/test', api_views.TestCreate.as_view())
+    path('api/user', api_views.UserCreateView.as_view()),
+    path('api/user/<int:pk>', api_views.UserDetailView.as_view()),
+    path('api/registry', api_views.RegistryListView.as_view()),
+    path('api/travel-item', api_views.TravelItemCreateView.as_view()),
+    path('api/travel-item/<int:pk>', api_views.TravelItemDetailView.as_view()),
 
 ]
 
