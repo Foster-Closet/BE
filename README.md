@@ -2,7 +2,7 @@
 Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/main/README.md
 (another project from Momentum Students)
 
-# [FOSTER-CLOSET: API](https://foster-closet.herokuapp.com)
+# [FOSTER-CLOSET: API](https://foster-closet.herokuapp.com/api/)
 
 ### FOSTER-CLOSET API is a REST API built with Django, built to serve the FOSTER-CLOSET front-end app that uses React.
 
@@ -18,15 +18,19 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 ## Endpoints: 
 | HTTP Method | Endpoint | Result | Notes |
 | ----------- | -------- | -------| ----- |
-| POST | `/<basic model>/` | Creates a new model object |  |
-| GET | `/<basic model>/` | Returns a list of all objects of that model |  |
-| GET | `/<basic model>/<obj_pk>/` | Returns the detail view for `<obj_pk>` |  |
-| PUT | `/<basic model>/<obj_pk>/` | Replaces `<obj_pk>` |  |
-| PATCH | `/<basic model>/<obj_pk>/` | Modifies `<obj_pk>` |  |
-| DELETE | `/<basic model>/<obj_pk>/` | Deletes `<obj_pk>` |  |
+| POST | `api/<basic model>/` | Creates a new model object |  |
+| GET | `api/<basic model>/` | Returns a list of all objects of that model |  |
+| GET | `api/<basic model>/<obj_pk>/` | Returns the detail view for `<obj_pk>` |  |
+| PUT | `api/<basic model>/<obj_pk>/` | Replaces `<obj_pk>` |  |
+| PATCH | `api/<basic model>/<obj_pk>/` | Modifies `<obj_pk>` |  |
+| DELETE | `api/<basic model>/<obj_pk>/` | Deletes `<obj_pk>` |  |
 
 
-
+|      | User |          |          |
+| -------- | -------- | -------- | -------- |
+| POST | `/user/` | Creates a `User` object| |
+| PUT/PATCH/DELETE | `/user/<pk>` | Replaces/Modifies/Deletes `User` | |
+| GET | `/user/<pk>` | Returns a `User` object | |
 
 |      | Registry |          |          |
 | -------- | -------- | -------- | -------- |
