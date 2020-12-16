@@ -31,9 +31,9 @@ class RegistryListView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Registry.objects.filter(user=self.request.user)
 
-class ItemCreateView(generics.CreateAPIView): 
+class ItemCreateView(generics.ListCreateAPIView): 
     queryset = Item.objects.all()
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         registry = serializer.validated_data['registry']
