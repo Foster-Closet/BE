@@ -2,7 +2,7 @@
 Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/main/README.md
 (another project from Momentum Students)
 
-# [FOSTER-CLOSET: API](https://foster-closet.herokuapp.com/api/)
+# [FOSTER-CLOSET: API](https://foster-closet.herokuapp.com/)
 
 ### FOSTER-CLOSET API is a REST API built with Django, built to serve the FOSTER-CLOSET front-end app that uses React.
 
@@ -28,18 +28,18 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 
 |      | User |          |          |
 | -------- | -------- | -------- | -------- |
-| POST | `/user/` | Creates a `User` object| |
-| PUT/PATCH/DELETE | `/user/<pk>` | Replaces/Modifies/Deletes `User` | |
-| GET | `/user/<pk>` | Returns a `User` object | |
+| POST | `api/user/` | Creates a `User` object| |
+| PUT/PATCH/DELETE | `api/user/<pk>` | Replaces/Modifies/Deletes `User` | |
+| GET | `api/user/<pk>` | Returns a `User` object | |
 
 |      | Registry |          |          |
 | -------- | -------- | -------- | -------- |
-| POST | `/registry/` | Creates a `Registry` object for that user, and creates `Item` objects tied to that registry | Requires a foster-family login|
-| GET | `/registry/` | Returns a list of all of `self.request.user`'s, aka currenty logged-in user's `Registries` | Requires a foster-family login|
-| POST | `/item/` | Creates an item| Requires a `Registry` that is associated with the logged-in user  |
-| GET | `/item/` | Returns a list of all `Item` objects| |
-| GET | `/item/<pk>` | Returns an `Item` object | Requires login with associated user |
-| PUT/PATCH/DELETE | `/item/<pk>` | Replaces/Modifies/Deletes `Item` | Requires login with associated user  |
+| POST | `api/registry/` | Creates a `Registry` object for that user, and creates `Item` objects tied to that registry | Requires a foster-family login|
+| GET | `api/registry/` | Returns a list of all of `self.request.user`'s, aka currenty logged-in user's `Registries` | Requires a foster-family login|
+| POST | `api/item/` | Creates an item| Requires a `Registry` that is associated with the logged-in user  |
+| GET | `api/item/` | Returns a list of all `Item` objects| |
+| GET | `api/item/<pk>` | Returns an `Item` object | Requires login with associated user |
+| PUT/PATCH/DELETE | `api/item/<pk>` | Replaces/Modifies/Deletes `Item` | Requires login with associated user  |
 
 ## Model Construction
 
