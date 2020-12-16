@@ -1,14 +1,3 @@
-# Django Project Template
-
-This project was generated from the Momentum Django project template. This template sets up some minimal changes:
-
-- [django-extensions](https://django-extensions.readthedocs.io/en/latest/) and [django-debug-toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/) are both installed and set up.
-- [django-environ](https://django-environ.readthedocs.io/en/latest/) is set up and the `DEBUG`, `SECRET_KEY`, and `DATABASES` settings are set by this package.
-- A starting Django app named `core` is provided.
-- There is a custom user model defined in `core.models.User`.
-- There is a `templates/` and a `static/` directory at the top level, both of which are set up to be used.
-- A `.gitignore` file is provided.
-- [Pipenv](https://pipenv.pypa.io/en/latest/) is used to manage dependencies.
 
 Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/main/README.md
 (another project from Momentum Students)
@@ -26,7 +15,6 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 | [Item]
 
 
-## Endpoints
 ## Endpoints: 
 | HTTP Method | Endpoint | Result | Notes |
 | ----------- | -------- | -------| ----- |
@@ -42,14 +30,64 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 
 |      | Registry |          |          |
 | -------- | -------- | -------- | -------- |
-| POST | `/registry/ | Creates a `Registry` object for that user, and creates items tied to that registry | Requires a foster-family login|
-| PUT/PATCH/DELETE | `/registry/<pk>` | Replaces/Modifies/Deletes registry | Requires login with associated user  |
+| POST | `/registry/` | Creates a `Registry` object for that user, and creates items tied to that registry | Requires a foster-family login|
+| PUT/PATCH/DELETE | `/registry/<pk>` | Replaces/Modifies/Deletes `Registry` | Requires login with associated user  |
 | GET | `/registry/<pk>` | Returns a list of all of `self.request.user`'s, aka currenty logged-in user's registries | Requires login with associated user  |
-| POST | `/item/` | Returns a list of all ite| Requires a registry that is associated with the logged-in user  |
+| POST | `/item/` | Returns a list of all items| Requires a `Registry` that is associated with the logged-in user  |
 | PUT/PATCH/DELETE | `/item/<pk>` | Replaces/Modifies/Deletes item | Requires login with associated user  |
 | GET | `/item/<pk>` | Returns a list of all items |  |
 
+## Model Construction
+
+### User
+```
+{
+    "username": CharField - mandatory
+    "password": CharField - mandatory
+    all other defaults
+    "first_name": CharField
+    "last_name": CharField
+    "is_foster": BooleanField
+    "is_donor": BooleanField
+    "zip_code": CharField
+    
+  
+}
+```
+
+### Registry
+```
+{
+    "user": ForeignKey(to=User) - mandatory
+    "time_made": DateTimeField  - automatically created
+}
+```
+
+### Item
+```
+{
+    "registry": ForeignKey(to=Registry) - mandatory
+    "donor": ForeignKey(to=User)
+    "description": CharField
+    "fulfilled": BooleanField
+    "time_fulfilled": DateTimeField - automatically created
+    
+    
+}
+```
 
 
 
 
+
+# Django Project Template
+
+This project was generated from the Momentum Django project template. This template sets up some minimal changes:
+
+- [django-extensions](https://django-extensions.readthedocs.io/en/latest/) and [django-debug-toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/) are both installed and set up.
+- [django-environ](https://django-environ.readthedocs.io/en/latest/) is set up and the `DEBUG`, `SECRET_KEY`, and `DATABASES` settings are set by this package.
+- A starting Django app named `core` is provided.
+- There is a custom user model defined in `core.models.User`.
+- There is a `templates/` and a `static/` directory at the top level, both of which are set up to be used.
+- A `.gitignore` file is provided.
+- [Pipenv](https://pipenv.pypa.io/en/latest/) is used to manage dependencies.
