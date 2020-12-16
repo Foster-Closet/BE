@@ -30,12 +30,12 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 
 |      | Registry |          |          |
 | -------- | -------- | -------- | -------- |
-| POST | `/registry/` | Creates a `Registry` object for that user, and creates items tied to that registry | Requires a foster-family login|
+| POST | `/registry/` | Creates a `Registry` object for that user, and creates `Items` tied to that registry | Requires a foster-family login|
 | PUT/PATCH/DELETE | `/registry/<pk>` | Replaces/Modifies/Deletes `Registry` | Requires login with associated user  |
-| GET | `/registry/<pk>` | Returns a list of all of `self.request.user`'s, aka currenty logged-in user's registries | Requires login with associated user  |
-| POST | `/item/` | Returns a list of all items| Requires a `Registry` that is associated with the logged-in user  |
-| PUT/PATCH/DELETE | `/item/<pk>` | Replaces/Modifies/Deletes item | Requires login with associated user  |
-| GET | `/item/<pk>` | Returns a list of all items |  |
+| GET | `/registry/<pk>` | Returns a list of all of `self.request.user`'s, aka currenty logged-in user's `Registries` | Requires login with associated user  |
+| POST | `/item/` | Returns a list of all `Items`| Requires a `Registry` that is associated with the logged-in user  |
+| PUT/PATCH/DELETE | `/item/<pk>` | Replaces/Modifies/Deletes `Item` | Requires login with associated user  |
+| GET | `/item/<pk>` | Returns a list of all `Items` |  |
 
 ## Model Construction
 
@@ -58,8 +58,8 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 ### Registry
 ```
 {
-    "user": ForeignKey(to=User) - mandatory
-    "time_made": DateTimeField  - automatically created
+    "user": ForeignKey(to=User) - auto adds `self.request.user` upon creation
+    "time_made": DateTimeField  - tracks when registry is created
 }
 ```
 
@@ -67,17 +67,14 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 ```
 {
     "registry": ForeignKey(to=Registry) - mandatory
-    "donor": ForeignKey(to=User)
-    "description": CharField
-    "fulfilled": BooleanField
-    "time_fulfilled": DateTimeField - automatically created
+    "donor": ForeignKey(to=User) 
+    "description": CharField - description of item
+    "fulfilled": BooleanField - tracks if the requested item has been fulfilled
+    "time_fulfilled": DateTimeField - updates whenever item is updated
     
     
 }
 ```
-
-
-
 
 
 # Django Project Template
