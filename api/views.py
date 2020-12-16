@@ -6,6 +6,7 @@ from rest_framework.exceptions import PermissionDenied
 
 
 class UserCreateView(generics.CreateAPIView):
+    queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny]
 
@@ -22,7 +23,7 @@ class RegistryListView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        if not serializer.cleaned_data['is_foster']:
+        if not self.request.user.is_foster:
             raise PermissionDenied(detail="Only foster families can add registries")
 
         serializer.save(user=self.request.user)
@@ -35,7 +36,7 @@ class ItemCreateView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        registry = serializer.cleaned_data['registry']
+        registry = serializer.validated_data['registry']
         if registry.user != self.request.user:
             raise PermissionDenied(detail="This registry does not belong to this user.")
         serializer.save()
