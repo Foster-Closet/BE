@@ -4,7 +4,7 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 
 # [FOSTER-CLOSET: API](https://foster-closet.herokuapp.com)
 
-### FOSTER-CLOSET API is a REST API built with Django, built to serve the front-end FOSTER-CLOSET front-end app using React.
+### FOSTER-CLOSET API is a REST API built with Django, built to serve the FOSTER-CLOSET front-end app that uses React.
 
 
 ## Models
@@ -32,7 +32,7 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 | -------- | -------- | -------- | -------- |
 | POST | `/registry/` | Creates a `Registry` object for that user, and creates `Items` tied to that registry | Requires a foster-family login|
 | PUT/PATCH/DELETE | `/registry/<pk>` | Replaces/Modifies/Deletes `Registry` | Requires login with associated user  |
-| GET | `/registry/<pk>` | Returns a list of all of `self.request.user`'s, aka currenty logged-in user's `Registries` | Requires login with associated user  |
+| GET | `/registry/<pk>` | Returns a list of all of `self.request.user`'s, aka currenty logged-in user's `Registries` Also gets items associated with that `Registry` | Requires login with associated user  |
 | POST | `/item/` | Returns a list of all `Items`| Requires a `Registry` that is associated with the logged-in user  |
 | PUT/PATCH/DELETE | `/item/<pk>` | Replaces/Modifies/Deletes `Item` | Requires login with associated user  |
 | GET | `/item/<pk>` | Returns a list of all `Items` |  |
