@@ -38,7 +38,8 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 | GET | `api/registry/` | Returns a list of all of `self.request.user`'s, aka currenty logged-in user's `Registries` | Requires a foster-family login|
 | POST | `api/item/` | Creates an item| Requires a `Registry` that is associated with the logged-in user  |
 | GET | `api/item/` | Returns a list of all `Item` objects| |
-| GET | `api/item/<pk>` | Returns an `Item` object | Requires login with associated user |
+| POST | `api/item/<pk>` | Creates `Item` object | Requires login with associated user |
+| GET | `api/item/<pk>` | Returns an `Item` object |  |
 | PUT/PATCH/DELETE | `api/item/<pk>` | Replaces/Modifies/Deletes `Item` | Requires login with associated user  |
 
 ## Model Construction
