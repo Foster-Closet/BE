@@ -23,8 +23,8 @@ class RegistryListView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        if not self.request.user.is_foster:
-            raise PermissionDenied(detail="Only foster families can add registries")
+        #if not self.request.user.is_foster:
+            #raise PermissionDenied(detail="Only foster families can add registries")
 
         serializer.save(user=self.request.user)
 
