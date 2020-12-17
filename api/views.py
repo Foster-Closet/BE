@@ -2,6 +2,11 @@ from core.models import User, Registry, Item
 from api.serializers import UserSerializer, RegistrySerializer, ItemSerializer
 from rest_framework import generics, permissions
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.authentication import  BasicAuthentication
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+
 
 
 
@@ -9,6 +14,19 @@ class UserCreateView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny]
+
+
+class LoginView(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, format=None):
+        content = {
+            'user': unicode(request.user),  # `django.contrib.auth.User` instance.
+            'auth': unicode(request.auth),  # None
+        }
+        return Response(content)
+
 
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):

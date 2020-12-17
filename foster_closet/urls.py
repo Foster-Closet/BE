@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path, re_path   
 from api import views as api_views
 
 urlpatterns = [
@@ -25,6 +25,10 @@ urlpatterns = [
     path('api/registry', api_views.RegistryListView.as_view()),
     path('api/item', api_views.ItemCreateView.as_view()),
     path('api/item/<int:pk>', api_views.ItemDetailView.as_view()),
+    re_path(r'^auth/', include('djoser.urls')),
+    re_path(r'^auth/', include('djoser.urls.authtoken')),
+
+
 
 ]
 
