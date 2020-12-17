@@ -38,7 +38,9 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class RegistryListView(generics.ListCreateAPIView):
     serializer_class = RegistrySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
+
 
     def perform_create(self, serializer):
         #if not self.request.user.is_foster:
@@ -51,7 +53,9 @@ class RegistryListView(generics.ListCreateAPIView):
 
 class ItemCreateView(generics.ListCreateAPIView): 
     queryset = Item.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]
+
 
     def perform_create(self, serializer):
         registry = serializer.validated_data['registry']
@@ -66,7 +70,8 @@ class ItemCreateView(generics.ListCreateAPIView):
     
    
 class ItemDetailView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     serializer_class = ItemSerializer
 
 
