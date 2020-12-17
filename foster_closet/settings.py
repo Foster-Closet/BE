@@ -53,6 +53,9 @@ INSTALLED_APPS = [
     'django_extensions',
     "rest_framework",
     'corsheaders',
+    'rest_framework.authtoken',
+    'djoser',
+
 
 
     # Project-specific
@@ -96,11 +99,18 @@ WSGI_APPLICATION = 'foster_closet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-
-
-
 # Heroku Option
 DATABASES = {'default': env.db()}
+
+# REST Framework authentication settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
