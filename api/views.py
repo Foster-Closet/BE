@@ -49,7 +49,7 @@ class RegistryListView(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        #return Registry.objects.filter(user=self.request.user)
+        return Registry.objects.filter(user=self.request.user)
 
 class ItemCreateView(generics.ListCreateAPIView): 
     queryset = Item.objects.all()
