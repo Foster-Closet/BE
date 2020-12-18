@@ -13,12 +13,26 @@ class ItemSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Item
+        fields = ['id', 'donor', 'description', 'fulfilled']
+
+class ItemWithRegistrySerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Item
         fields = ['id', 'registry', 'donor', 'description', 'fulfilled']
 
-
+#https://www.django-rest-framework.org/api-guide/relations/
 class RegistrySerializer(serializers.ModelSerializer):
-    items = ItemSerializer(many=True, read_only=True)
+    items = ItemSerializer(many=True)
 
     class Meta:
         model = Registry
         fields = ['id', 'time_made', 'items']
+
+    def create(self, validated_data):
+        items_data = validated_data.pop('items')
+        registry = Registry.objects.create(**validated_data)
+        for item_data in items_data:
+            Item.objects.create(registry=registry, **item_data)
+        return registry
+

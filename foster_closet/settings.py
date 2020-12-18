@@ -102,12 +102,12 @@ WSGI_APPLICATION = 'foster_closet.wsgi.application'
 # Heroku Option
 DATABASES = {'default': env.db()}
 
-# REST Framework authentication settings
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     ),
-# }
+#REST Framework authentication settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
 
 
 

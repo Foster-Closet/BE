@@ -1,32 +1,21 @@
 from core.models import User, Registry, Item
-from api.serializers import UserSerializer, RegistrySerializer, ItemSerializer
+from api.serializers import UserSerializer, RegistrySerializer, ItemSerializer, ItemWithRegistrySerializer
 from rest_framework import generics, permissions
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.authentication import  BasicAuthentication
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+try:
+    user = User.objects.all().first()
+except User.DoesNotExist:
+    user = User(username='testuser', password='momentumlearn')
+    user.save()
 
-
-
-
-class UserCreateView(generics.CreateAPIView):
+class UserCreateView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny]
-
-
-class LoginView(APIView):
-    authentication_classes = [BasicAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get(self, request, format=None):
-        content = {
-            'user': unicode(request.user),  # `django.contrib.auth.User` instance.
-            'auth': unicode(request.auth),  # None
-        }
-        return Response(content)
-
 
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -43,30 +32,40 @@ class RegistryListView(generics.ListCreateAPIView):
 
 
     def perform_create(self, serializer):
-        #if not self.request.user.is_foster:
-            #raise PermissionDenied(detail="Only foster families can add registries")
-
-        serializer.save(user=self.request.user)
+    #     #if not self.request.user.is_foster:
+    #         #raise PermissionDenied(detail="Only foster families can add registries")
+        #serializer.save(user=self.request.user)
+        #serializer.save(user=self.request.user)
+        serializer.save(user=user)
+        
 
     def get_queryset(self):
-        return Registry.objects.filter(user=self.request.user)
+        return Registry.objects.filter(user=user)
+
+class RegistryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = RegistrySerializer
+
+    def get_queryset(self):
+        #return Registry.objects.filter(registry__user=self.request.user)
+        return Registry.objects.all()
+
 
 class ItemCreateView(generics.ListCreateAPIView): 
     queryset = Item.objects.all()
     #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     permission_classes = [permissions.AllowAny]
+    serializer_class = ItemWithRegistrySerializer
+
 
 
     def perform_create(self, serializer):
-        registry = serializer.validated_data['registry']
-        if registry.user != self.request.user:
-            raise PermissionDenied(detail="This registry does not belong to this user.")
+        # registry = serializer.validated_data['registry']
+        # if registry.user != self.request.user:
+        #     raise PermissionDenied(detail="This registry does not belong to this user.")
         serializer.save()
 
 
-# class ItemListView(generics.ListView):
-#     serializer_class = ItemSerializer
-#     queryset = Item.objects.all()
     
    
 class ItemDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -76,6 +75,8 @@ class ItemDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
     def get_queryset(self):
-        return Item.objects.filter(registry__user=self.request.user)
+        #return Item.objects.filter(registry__user=self.request.user)
+        return Item.objects.all
+
     
     
