@@ -36,8 +36,8 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 
 |      | Registry |          |          |
 | -------- | -------- | -------- | -------- |
-| POST | `api/registry/` | Creates a `Registry` object for that user, and creates `Item` objects tied to that registry | Requires a foster-family login|
-| GET | `api/registry/` | Returns a list of all of `self.request.user`'s, aka currenty logged-in user's `Registries` | Requires a foster-family login|
+| POST | `api/registry/` | Creates a `Registry` object for logged-in user, and creates `Item` objects tied to that registry | Will eventually require a foster-family login|
+| GET | `api/registry/` | Returns a list of all of currenty logged-in user's `Registries` | Will eventually require a foster-family login|
 | PUT/PATCH/DELETE | `api/registry/<pk>/` | Replaces/Modifies/Deletes Registry
 | POST | `api/item/` | Creates an item| Requires a `Registry` that is associated with the logged-in user  |
 | GET | `api/item/` | Returns a list of all `Item` objects| |
