@@ -28,9 +28,11 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 
 |      | User |          |          |
 | -------- | -------- | -------- | -------- |
+| POST | `auth/token/login/` | Takes username and password-Logins and returns token| |
+| POST | `auth/token/logout/` | Logout-destroys token| |
 | POST | `api/user/` | Creates a `User` object| |
-| PUT/PATCH/DELETE | `api/user/<pk>` | Replaces/Modifies/Deletes `User` | |
-| GET | `api/user/<pk>` | Returns a `User` object | |
+| PUT/PATCH/DELETE | `api/user/<pk>/` | Replaces/Modifies/Deletes `User` | |
+| GET | `api/user/<pk>/` | Returns a `User` object | |
 
 |      | Registry |          |          |
 | -------- | -------- | -------- | -------- |
@@ -39,9 +41,9 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 | PUT/PATCH/DELETE | `api/registry/<pk>/` | Replaces/Modifies/Deletes Registry
 | POST | `api/item/` | Creates an item| Requires a `Registry` that is associated with the logged-in user  |
 | GET | `api/item/` | Returns a list of all `Item` objects| |
-| POST | `api/item/<pk>` | Creates `Item` object | Requires login with associated user |
-| GET | `api/item/<pk>` | Returns an `Item` object |  |
-| PUT/PATCH/DELETE | `api/item/<pk>` | Replaces/Modifies/Deletes `Item` | Requires login with associated user  |
+| POST | `api/item/<pk>/` | Creates `Item` object | Requires login with associated user |
+| GET | `api/item/<pk>/` | Returns an `Item` object |  |
+| PUT/PATCH/DELETE | `api/item/<pk>/` | Replaces/Modifies/Deletes `Item` | Requires login with associated user  |
 
 ## Model Construction
 
