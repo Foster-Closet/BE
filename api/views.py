@@ -74,9 +74,6 @@ class ItemCreateView(generics.ListCreateAPIView):
         #     raise PermissionDenied(detail="This registry does not belong to this user.")
         serializer.save()
 
-
-    
-   
 class ItemDetailView(generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = [permissions.IsAuthenticated]
     permission_classes = [permissions.AllowAny]
@@ -85,7 +82,7 @@ class ItemDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         #return Item.objects.filter(registry__user=self.request.user)
-        return Item.objects.all
+        return Item.objects.all()
 
     
     
