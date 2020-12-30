@@ -18,7 +18,7 @@ class ItemWithRegistrySerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Item
-        fields = ['id', 'registry', 'donor', 'description', 'fulfilled']
+        fields = ['id', 'registry', 'donor', 'description', 'status']
 
 #https://www.django-rest-framework.org/api-guide/relations/
 class RegistrySerializer(serializers.ModelSerializer):
