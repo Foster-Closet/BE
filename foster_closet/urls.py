@@ -26,6 +26,7 @@ urlpatterns = [
     path('api/registry/', api_views.RegistryListView.as_view()),
     path('api/registry/<int:pk>', api_views.RegistryDetailView.as_view()),
     path('api/item/', api_views.ItemCreateView.as_view()),
+    path('api/item/status', api_views.item_list),
     path('api/item/<int:pk>/', api_views.ItemDetailView.as_view()),
     re_path(r'^auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),

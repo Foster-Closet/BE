@@ -57,16 +57,15 @@ class RegistryDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         #return Registry.objects.filter(registry__user=self.request.user)
-        return Registry.objects.all()
+        return Registry.objects.filter(user=user)
 
 
-class ItemCreateView(generics.ListCreateAPIView): 
-    queryset = Item.objects.all()
+
+class ItemCreateView(generics.CreateAPIView): 
+    queryset = Item.objects.filter(registry__user=user)
     #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     permission_classes = [permissions.AllowAny]
     serializer_class = ItemWithRegistrySerializer
-
-
 
     def perform_create(self, serializer):
         # registry = serializer.validated_data['registry']
@@ -74,15 +73,20 @@ class ItemCreateView(generics.ListCreateAPIView):
         #     raise PermissionDenied(detail="This registry does not belong to this user.")
         serializer.save()
 
+@api_view(['GET'])
+def item_list(request): 
+    items = Item.objects.filter(registry__user=user)
+    return Response({
+        'requestedItems': items.filter(status='requestedItems').values(),
+        'inProgress': items.filter(status='inProgress').values(),
+        'fulfilled': items.filter(status='fulfilled').values()
+    })
+
+
 class ItemDetailView(generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = [permissions.IsAuthenticated]
+    queryset = Item.objects.filter(registry__user=user)
     permission_classes = [permissions.AllowAny]
-    serializer_class = ItemSerializer
-
-
-    def get_queryset(self):
-        #return Item.objects.filter(registry__user=self.request.user)
-        return Item.objects.all()
-
+    serializer_class = ItemWithRegistrySerializer
     
     
