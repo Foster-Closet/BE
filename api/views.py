@@ -1,10 +1,12 @@
 from core.models import User, Registry, Item
 from api.serializers import UserSerializer, RegistrySerializer, ItemSerializer, ItemWithRegistrySerializer
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, viewsets
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.authentication import  BasicAuthentication
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
 
 try:
     user = User.objects.all().first()
@@ -16,6 +18,13 @@ class UserCreateView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny]
+
+
+
+#https://stackoverflow.com/questions/15770488/return-the-current-user-with-django-rest-framework
+
+
+
 
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):

@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/user', api_views.UserCreateView.as_view()),
     path('api/user/<int:pk>/', api_views.UserDetailView.as_view()),
+    #path('api/user/me/', api_views.current_user),
     path('api/registry/', api_views.RegistryListView.as_view()),
     path('api/registry/<int:pk>', api_views.RegistryDetailView.as_view()),
     path('api/item/', api_views.ItemCreateView.as_view()),

@@ -15,12 +15,21 @@ class Registry(models.Model):
 
 
 class Item(models.Model):
+
+    class Status(models.TextChoices):
+        REQUESTED_ITEMS = 'requestedItems', ('requestedItems')
+        IN_PROGRESS = 'inProgress', ('inProgress')
+        FULFILLED = 'fulfilled', ('fulfilled')
+
     registry = models.ForeignKey(to='Registry', on_delete=models.CASCADE, related_name='items')
-    #subcategory = models.ForeignKey(to='Subcategory', related_name='items')
+    #category = models.ForeignKey(to='Category', related_name='items')
     description = models.CharField(null=True, blank=True, max_length=100)
     donor = models.ForeignKey(to='User', on_delete=models.SET_NULL, null=True, blank=True)
-    fulfilled = models.BooleanField(default=False, blank=True)
     time_fulfilled = models.DateTimeField(null=True, auto_now=True)
+    status = models.CharField(max_length=15, choices=Status.choices, default=Status.REQUESTED_ITEMS)
+
+
+    #any additional information needed about items, should null by default
 
 # class Category(models.Model):
 #     categories = [
@@ -38,6 +47,3 @@ class Item(models.Model):
 #     choices = ['stroller, double-stroller, infant car-seat, convertible car-seat', 'rear-facing car seat']
 #     category = models.ForeignKey(to=Category, default=1):
     
-
-
-

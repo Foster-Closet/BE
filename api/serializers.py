@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from core.models import User, Registry, Item
 
-
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -13,7 +12,7 @@ class ItemSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Item
-        fields = ['id', 'donor', 'description', 'fulfilled']
+        fields = ['id', 'donor', 'description', 'status']
 
 class ItemWithRegistrySerializer(serializers.ModelSerializer):
     
