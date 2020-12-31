@@ -61,8 +61,8 @@ class RegistryDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 
-class ItemCreateView(generics.CreateAPIView): 
-    queryset = Item.objects.filter(registry__user=user)
+class ItemCreateView(generics.ListCreateAPIView): 
+    queryset = Item.objects.all()
     #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     permission_classes = [permissions.AllowAny]
     serializer_class = ItemWithRegistrySerializer

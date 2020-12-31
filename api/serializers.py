@@ -20,13 +20,17 @@ class ItemWithRegistrySerializer(serializers.ModelSerializer):
         model = Item
         fields = ['id', 'registry', 'donor', 'description', 'status']
 
+class ItemStatusSerializer(serializers.ModelSerializer):
+    items = ItemSerializer(many=True)
+
+
 #https://www.django-rest-framework.org/api-guide/relations/
 class RegistrySerializer(serializers.ModelSerializer):
     items = ItemSerializer(many=True)
 
     class Meta:
         model = Registry
-        fields = ['id', 'time_made', 'items']
+        fields = ['id', 'items']
 
     def create(self, validated_data):
         items_data = validated_data.pop('items')
@@ -35,3 +39,12 @@ class RegistrySerializer(serializers.ModelSerializer):
             Item.objects.create(registry=registry, **item_data)
         return registry
 
+    def update(self, instance, validated_data):
+        items_data = validated_data.pop('items')
+        # Unless the application properly enforces that this field is
+        # always set, the following could raise a `DoesNotExist`, which
+        # would need to be handled.
+        #original_items = instance.items
+        for item_data in items_data:
+            Item.objects.create(registry=instance, **item_data)
+        return instance
