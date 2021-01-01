@@ -44,7 +44,6 @@ class RegistryListView(generics.ListCreateAPIView):
     #     #if not self.request.user.is_foster:
     #         #raise PermissionDenied(detail="Only foster families can add registries")
         #serializer.save(user=self.request.user)
-        #serializer.save(user=self.request.user)
         serializer.save(user=user)
         
 
@@ -58,9 +57,7 @@ class RegistryDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         #return Registry.objects.filter(registry__user=self.request.user)
         return Registry.objects.filter(user=user)
-
-
-
+        
 class ItemCreateView(generics.ListCreateAPIView): 
     queryset = Item.objects.all()
     #permission_classes = [permissions.IsAuthenticatedOrReadOnly]

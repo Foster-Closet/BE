@@ -27,10 +27,20 @@ class ItemStatusSerializer(serializers.ModelSerializer):
 #https://www.django-rest-framework.org/api-guide/relations/
 class RegistrySerializer(serializers.ModelSerializer):
     items = ItemSerializer(many=True)
-
+    user = serializers.SlugRelatedField(read_only=True, slug_field='username')
     class Meta:
         model = Registry
-        fields = ['id', 'items']
+        fields = ['id', 'user', 'items']
+
+
+class AlbumSerializer(serializers.ModelSerializer):
+    tracks = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='username'
+     )
+
+
 
     def create(self, validated_data):
         items_data = validated_data.pop('items')
