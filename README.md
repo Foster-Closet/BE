@@ -38,11 +38,11 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 | -------- | -------- | -------- | -------- |
 | POST | `api/registry/` | Creates a `Registry` object for logged-in user, and creates `Item` objects tied to that registry | Will eventually require a foster-family login|
 | GET | `api/registry/` | Returns a list of all of currenty logged-in user's `Registries` | Will eventually require a foster-family login|
-| PUT/PATCH/DELETE | `api/registry/<pk>/` | Replaces/Modifies/Deletes Registry
+| GET | `api/registry/pk` | Returns a specific`Registry` | Will eventually require a foster-family login|
+| PUT/PATCH/DELETE | `api/registry/<pk>` | Replaces/Modifies/Deletes Registry
 | POST | `api/item/` | Creates an item| Requires a `Registry` that is associated with the logged-in user  |
 | GET | `api/item/` | Returns a list of all `Item` objects| |
-| POST | `api/item/<pk>/` | Creates `Item` object | Requires login with associated user |
-| GET | `api/item/<pk>/` | Returns an `Item` object |  |
+| GET | `api/item/<pk>` | Returns an `Item` object |  |
 | PUT/PATCH/DELETE | `api/item/<pk>/` | Replaces/Modifies/Deletes `Item` | Requires login with associated user  |
 
 ## Model Construction
