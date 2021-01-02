@@ -10,6 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
     
 class ItemSerializer(serializers.ModelSerializer):
     
+    
     class Meta:
         model = Item
         fields = ['id', 'donor', 'description', 'status']

@@ -12,6 +12,7 @@ class User(AbstractUser):
 class Registry(models.Model):
     user = models.ForeignKey(to='User', on_delete=models.CASCADE, related_name='registries')
     time_made = models.DateTimeField(auto_now_add=True, null=True)
+    ##unique name for registry
 
 
 class Item(models.Model):

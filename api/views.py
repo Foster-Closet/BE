@@ -1,6 +1,6 @@
 from core.models import User, Registry, Item
 from api.serializers import UserSerializer, RegistrySerializer, ItemSerializer, ItemWithRegistrySerializer
-from rest_framework import generics, permissions, viewsets
+from rest_framework import generics, permissions, viewsets, status
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.authentication import  BasicAuthentication
 from rest_framework.views import APIView
@@ -23,10 +23,6 @@ class UserCreateView(generics.ListCreateAPIView):
 
 #https://stackoverflow.com/questions/15770488/return-the-current-user-with-django-rest-framework
 
-
-
-
-
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny]
@@ -34,11 +30,27 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 
+class RegistryListv2(APIView):
+
+    def get(self, request, format=None):
+        if self.request.user.is_donor:
+            registries = Registry.objects.all()
+        else:
+            registries = request.user.registries.all()
+        serializer = RegistrySerializer(registries, many=True)
+        return Response(serializer.data)
+    
+    def post(self, request, format=None):
+        serializer = RegistrySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class RegistryListView(generics.ListCreateAPIView):
     serializer_class = RegistrySerializer
     #permission_classes = [permissions.IsAuthenticated]
     permission_classes = [permissions.AllowAny]
-
 
     def perform_create(self, serializer):
     #     #if not self.request.user.is_foster:
@@ -48,7 +60,8 @@ class RegistryListView(generics.ListCreateAPIView):
         
 
     def get_queryset(self):
-        return Registry.objects.filter(user=user)
+        return user.registries.all()
+        #Registry.objects.filter(user=user)
 
 class RegistryDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.AllowAny]
