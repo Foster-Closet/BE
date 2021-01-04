@@ -43,10 +43,8 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 | POST | `api/item/` | Creates an item| Requires a `Registry` that is associated with the logged-in user  |
 | GET | `api/item/` | Returns a list of all `Item` objects| |
 | GET | `api/item/<pk>` | Returns an `Item` object |  |
-| GET | `api/item/status` | Returns  all of a user's `Item` objects sorted by status |  |
-
-api/item/status/
 | PUT/PATCH/DELETE | `api/item/<pk>` | Replaces/Modifies/Deletes `Item` | Requires login with associated user  |
+| GET | `api/item/status` | Returns  all of a user's `Item` objects sorted by status |  |
 
 ## Model Construction
 
