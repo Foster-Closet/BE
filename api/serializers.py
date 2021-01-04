@@ -33,16 +33,6 @@ class RegistrySerializer(serializers.ModelSerializer):
         model = Registry
         fields = ['id', 'user', 'items']
 
-
-class AlbumSerializer(serializers.ModelSerializer):
-    tracks = serializers.SlugRelatedField(
-        many=True,
-        read_only=True,
-        slug_field='username'
-     )
-
-
-
     def create(self, validated_data):
         items_data = validated_data.pop('items')
         registry = Registry.objects.create(**validated_data)
