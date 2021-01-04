@@ -85,7 +85,7 @@ class ItemCreateView(generics.ListCreateAPIView):
     
     def get_queryset(self):
         #return Item.objects.filter(registry_user=self.request.user)
-        return Item.objects.filter(registry_user=user)
+        return Item.objects.filter(registry__user=user)
 
 
 
@@ -106,7 +106,7 @@ class ItemDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         #return Item.objects.filter(registry_user=self.request.user)
-        return Item.objects.filter(registry_user=user)
+        return Item.objects.filter(registry__user=user)
 
     
     
