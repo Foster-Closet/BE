@@ -60,7 +60,7 @@ class RegistryListView(generics.ListCreateAPIView):
         
 
     def get_queryset(self):
-        return self.request.user.registries.all()
+        return user.registries.all()
 
 class RegistryDetailView(generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = [permissions.IsAuthenticated]
