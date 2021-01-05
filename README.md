@@ -28,19 +28,23 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 
 |      | User |          |          |
 | -------- | -------- | -------- | -------- |
+| POST | `auth/token/login/` | Takes username and password-Logins and returns token| |
+| POST | `auth/token/logout/` | Logout-destroys token| |
 | POST | `api/user/` | Creates a `User` object| |
-| PUT/PATCH/DELETE | `api/user/<pk>` | Replaces/Modifies/Deletes `User` | |
-| GET | `api/user/<pk>` | Returns a `User` object | |
+| PUT/PATCH/DELETE | `api/user/<pk>/` | Replaces/Modifies/Deletes `User` | |
+| GET | `api/user/<pk>/` | Returns a `User` object | |
 
 |      | Registry |          |          |
 | -------- | -------- | -------- | -------- |
-| POST | `api/registry/` | Creates a `Registry` object for that user, and creates `Item` objects tied to that registry | Requires a foster-family login|
-| GET | `api/registry/` | Returns a list of all of `self.request.user`'s, aka currenty logged-in user's `Registries` | Requires a foster-family login|
+| POST | `api/registry/` | Creates a `Registry` object for logged-in user, and creates `Item` objects tied to that registry | Will eventually require a foster-family login|
+| GET | `api/registry/` | Returns a list of all of currenty logged-in user's `Registries` | Will eventually require a foster-family login|
+| GET | `api/registry/pk` | Returns a specific`Registry` | Will eventually require a foster-family login|
+| PUT/PATCH/DELETE | `api/registry/<pk>` | Replaces/Modifies/Deletes Registry
 | POST | `api/item/` | Creates an item| Requires a `Registry` that is associated with the logged-in user  |
 | GET | `api/item/` | Returns a list of all `Item` objects| |
-| POST | `api/item/<pk>` | Creates `Item` object | Requires login with associated user |
 | GET | `api/item/<pk>` | Returns an `Item` object |  |
 | PUT/PATCH/DELETE | `api/item/<pk>` | Replaces/Modifies/Deletes `Item` | Requires login with associated user  |
+| GET | `api/item/status` | Returns  all of a user's `Item` objects sorted by status |  |
 
 ## Model Construction
 
@@ -93,4 +97,3 @@ This project was generated from the Momentum Django project template. This templ
 - There is a `templates/` and a `static/` directory at the top level, both of which are set up to be used.
 - A `.gitignore` file is provided.
 - [Pipenv](https://pipenv.pypa.io/en/latest/) is used to manage dependencies.
-

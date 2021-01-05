@@ -84,7 +84,7 @@ class ItemCreateView(generics.ListCreateAPIView):
         serializer.save()
     
     def get_queryset(self):
-        return Item.objects.filter(registry_user=self.request.user)
+        return Item.objects.filter(registry__user=self.request.user)
         #return Item.objects.filter(registry__user=user)
 
 
@@ -105,7 +105,7 @@ class ItemDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ItemWithRegistrySerializer
 
     def get_queryset(self):
-        return Item.objects.filter(registry_user=self.request.user)
+        return Item.objects.filter(registry__user=self.request.user)
         #return Item.objects.all()
 
     
