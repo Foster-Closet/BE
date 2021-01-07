@@ -1,13 +1,18 @@
 from rest_framework import serializers
-from core.models import User, Registry, Item
+from core.models import User, Registry, Item, Message
 
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'password', 'zipcode', 'email', 'phone_number', 'first_name', 'last_name', 'is_donor', 'is_foster']
+        fields = ['id', 'username', 'password', 'email', 'phone_number', 'first_name', 'last_name']
         
+class MessageSerializer(serializers.ModelSerializer):
     
+    class Meta:
+        model = Message
+        fields = ['sender', 'receiver', 'message', 'url' ]
+   
 class ItemSerializer(serializers.ModelSerializer):
     
     

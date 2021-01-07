@@ -17,6 +17,7 @@ django-heroku = "*"
 gunicorn = "*"
 django-cors-headers = "*"
 djoser = "*"
+twilio = "*"
 
 [requires]
 python_version = "3.8"

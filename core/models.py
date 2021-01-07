@@ -2,10 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-    zipcode = models.CharField(null=True, blank=True, max_length=5)
-    is_donor = models.BooleanField(default=True, blank=True)
-    is_foster = models.BooleanField(default=False, blank=True)
-    phone_number = models.CharField(null=True, blank=True, max_length=10)
+    phone_number = models.CharField(null=True, blank=True, max_length=12)
 
 
 
@@ -13,6 +10,13 @@ class Registry(models.Model):
     user = models.ForeignKey(to='User', on_delete=models.CASCADE, related_name='registries')
     time_made = models.DateTimeField(auto_now_add=True, null=True)
     ##unique name for registry
+
+class Message(models.Model):
+    sender = models.ForeignKey(to='User', blank=True, on_delete=models.CASCADE, related_name='messages_sent' ) 
+    receiver = models.ForeignKey(to='User', null=True, on_delete=models.CASCADE, related_name='messages_received')
+    message = models.TextField(max_length=255)
+    time_made = models.DateTimeField(auto_now_add=True, null=True)
+    url = models.URLField(max_length=200)
 
 
 class Item(models.Model):
