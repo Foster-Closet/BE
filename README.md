@@ -20,10 +20,10 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 | ----------- | -------- | -------| ----- |
 | POST | `api/<basic model>/` | Creates a new model object |  |
 | GET | `api/<basic model>/` | Returns a list of all objects of that model |  |
-| GET | `api/<basic model>/<obj_pk>/` | Returns the detail view for `<obj_pk>` |  |
-| PUT | `api/<basic model>/<obj_pk>/` | Replaces `<obj_pk>` |  |
-| PATCH | `api/<basic model>/<obj_pk>/` | Modifies `<obj_pk>` |  |
-| DELETE | `api/<basic model>/<obj_pk>/` | Deletes `<obj_pk>` |  |
+| GET | `api/<basic model>/<obj_pk>` | Returns the detail view for `<obj_pk>` |  |
+| PUT | `api/<basic model>/<obj_pk>` | Replaces `<obj_pk>` |  |
+| PATCH | `api/<basic model>/<obj_pk>` | Modifies `<obj_pk>` |  |
+| DELETE | `api/<basic model>/<obj_pk>` | Deletes `<obj_pk>` |  |
 
 
 |      | User |          |          |
@@ -38,7 +38,7 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 | -------- | -------- | -------- | -------- |
 | POST | `api/registry/` | Creates a `Registry` object for logged-in user, and creates `Item` objects tied to that registry | Will eventually require a foster-family login|
 | GET | `api/registry/` | Returns a list of all of currenty logged-in user's `Registries` | Will eventually require a foster-family login|
-| GET | `api/registry/pk` | Returns a specific`Registry` | Will eventually require a foster-family login|
+| GET | `api/registry/<pk>` | Returns a specific`Registry` | Will eventually require a foster-family login|
 | PUT/PATCH/DELETE | `api/registry/<pk>` | Replaces/Modifies/Deletes Registry
 
 |      | Item |          |          |
