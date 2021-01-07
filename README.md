@@ -51,7 +51,7 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 
 |      | Message |          |          |
 | -------- | -------- | -------- | -------- |
-| POST | `api/message/` | Creates and sends a `message`| Requires a `Registry` that is associated with the logged-in user  |
+| POST | `api/message/` | Creates and sends a `message`| {"reciever":<user_id>, "message":"<string>"}  |
 | GET | `api/message/` | Returns logged-in user's `Messages` |  |
 
 
