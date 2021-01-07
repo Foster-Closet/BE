@@ -28,6 +28,7 @@ except User.DoesNotExist:
     user.save()
 
 
+
 class UserCreateView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer

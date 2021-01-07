@@ -5,7 +5,6 @@ class User(AbstractUser):
     phone_number = models.CharField(null=True, blank=True, max_length=12)
 
 
-
 class Registry(models.Model):
     user = models.ForeignKey(to='User', on_delete=models.CASCADE, related_name='registries')
     time_made = models.DateTimeField(auto_now_add=True, null=True)

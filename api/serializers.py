@@ -1,17 +1,23 @@
 from rest_framework import serializers
 from core.models import User, Registry, Item, Message
+from djoser.serializers import UserCreateSerializer as BaseUserRegistrationSerializer
+
+#https://stackoverflow.com/questions/49095424/customize-the-djoser-create-user-endpoint
+class UserRegistrationSerializer(BaseUserRegistrationSerializer):
+    class Meta(BaseUserRegistrationSerializer.Meta):
+        fields = ('phone_number',)
 
 class UserSerializer(serializers.ModelSerializer):
-
+   
     class Meta:
         model = User
-        fields = ['id', 'username', 'password', 'email', 'phone_number', 'first_name', 'last_name']
+        fields = ['username', 'password', 'phone_number' ]
         
 class MessageSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Message
-        fields = ['sender', 'receiver', 'message', 'url' ]
+        fields = ['sender', 'receiver', 'message', ]
    
 class ItemSerializer(serializers.ModelSerializer):
     
