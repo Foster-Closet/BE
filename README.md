@@ -42,6 +42,7 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 | PUT/PATCH/DELETE | `api/registry/<pk>` | Replaces/Modifies/Deletes Registry
 
 |      | Item |          |          |
+| -------- | -------- | -------- | -------- |
 | POST | `api/item/` | Creates an `Item`| Requires a `Registry` that is associated with the logged-in user  |
 | GET | `api/item/<pk>` | Returns all of a user's `Item` objects |  |
 | GET | `api/item/<pk>` | Returns an `Item` |  |
@@ -49,6 +50,7 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 | GET | `api/item/status` | Returns  all of a user's `Item` objects sorted by status |  |
 
 |      | Message |          |          |
+| -------- | -------- | -------- | -------- |
 | POST | `api/message/` | Creates and sends a `message`| Requires a `Registry` that is associated with the logged-in user  |
 | GET | `api/message/` | Returns logged-in user's `Messages` |  |
 
