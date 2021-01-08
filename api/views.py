@@ -90,7 +90,7 @@ class RegistryListv2(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class RegistryListView(generics.ListCreateAPIView):
+class RegistryListCreateView(generics.ListCreateAPIView):
     serializer_class = RegistrySerializer
     #permission_classes = [permissions.IsAuthenticatedOrReadONly]
     permission_classes = [permissions.AllowAny]
@@ -104,6 +104,14 @@ class RegistryListView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         return self.request.user.registries.all()
+
+class RegistryListView(generics.ListAPIView):
+    serializer_class = RegistrySerializer
+    #permission_classes = [permissions.IsAuthenticatedOrReadONly]
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        return Registry.objects.filter(user!=self.request.user)
 
 class RegistryDetailView(generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = [permissions.IsAuthenticated]
