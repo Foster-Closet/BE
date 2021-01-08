@@ -27,9 +27,9 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 
 |      | User |          |          |
 | -------- | -------- | -------- | -------- |
-| POST | `auth/token/login/` | Takes username and password-Logins and returns token| |
-| POST | `auth/token/logout/` | Logout-destroys token| |
-| POST | `api/auth/users` | User registration|{"username":"<username>", "password":"<password>", "phone_number":"<number>"} |
+| POST | `auth/token/login/` | Takes username and password-Logins and returns token|{"username":"<username>", "password":"<password>"}|
+| POST | `auth/token/logout/` | Logout-destroys token|  |
+| POST | `api/auth/users` | User registration|{"username":"<string>", "password":"<string>", "phone_number":"<string>"} |
 | PUT/PATCH/DELETE | `api/user/<pk>/` | Replaces/Modifies/Deletes `User` | |
 | GET | `api/user/<pk>/` | Returns a `User` object | |
 
@@ -37,8 +37,9 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 | -------- | -------- | -------- | -------- |
 | POST | `api/registry/` | Creates a `Registry` object for logged-in user, and creates `Item` objects tied to that registry | |
 | POST | `api/registry/` | {"items": [{"description":"<description>"}, {"description":"<description>"}, .. ]} | |
-| GET | `api/registry/` | Returns a list of all of currenty logged-in user's `Registries` | Will eventually require a foster-family login|
-| GET | `api/registry/<pk>` | Returns a specific`Registry` | Will eventually require a foster-family login|
+| GET | `api/registry/` | Returns a list of all of currenty logged-in user's `Registries` | |
+| GET | `api/registry/all/` | Returns a list of all of registries excluding current user| |    
+| GET | `api/registry/<pk>` | Returns a specific`Registry` | |
 | PUT/PATCH/DELETE | `api/registry/<pk>` | Replaces/Modifies/Deletes Registry
 
 |      | Item |         |         |
