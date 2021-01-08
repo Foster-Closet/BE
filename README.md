@@ -38,9 +38,9 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 | POST | `api/registry/` | Creates a `Registry` object for logged-in user, and creates `Item` objects tied to that registry | |
 | POST | `api/registry/` | {"items": [{"description":"<description>"}, {"description":"<description>"}, .. ]} | |
 | GET | `api/registry/` | Returns a list of all of currenty logged-in user's `Registries` | |
-| GET | `api/registry/all/` | Returns a list of all of registries excluding current user| |    
+| GET | `api/registry/all/` | Returns a list of all of `Registries` excluding current user| |    
 | GET | `api/registry/<pk>` | Returns a specific`Registry` | |
-| PUT/PATCH/DELETE | `api/registry/<pk>` | Replaces/Modifies/Deletes Registry
+| PUT/PATCH/DELETE | `api/registry/<pk>` | Replaces/Modifies/Deletes `Registry`
 
 |      | Item |         |         |
 | -------- | -------- | -------- | -------- |
