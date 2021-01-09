@@ -34,6 +34,7 @@ class UserCreateView(generics.ListCreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny]
 
+
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny]
@@ -63,16 +64,6 @@ def message_list(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
-
-
-
-#https://stackoverflow.com/questions/15770488/return-the-current-user-with-django-rest-framework
-
-
-
-
-
 class RegistryListv2(APIView):
 
     def get(self, request, format=None):
@@ -90,6 +81,7 @@ class RegistryListv2(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class RegistryListCreateView(generics.ListCreateAPIView):
     serializer_class = RegistrySerializer
     #permission_classes = [permissions.IsAuthenticatedOrReadONly]
@@ -101,9 +93,9 @@ class RegistryListCreateView(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
         #serializer.save(user=user)
         
-
     def get_queryset(self):
         return self.request.user.registries.all()
+
 
 class RegistryListView(generics.ListAPIView):
     serializer_class = RegistrySerializer
@@ -112,6 +104,7 @@ class RegistryListView(generics.ListAPIView):
 
     def get_queryset(self):
         return Registry.objects.filter(user!=self.request.user)
+
 
 class RegistryDetailView(generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = [permissions.IsAuthenticated]
@@ -122,7 +115,8 @@ class RegistryDetailView(generics.RetrieveUpdateDestroyAPIView):
         #return Registry.objects.filter(registry__user=self.request.user)
         return self.request.user.registries.all()
         #return user.registries.all()
-        
+
+
 class ItemCreateView(generics.ListCreateAPIView): 
     #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     permission_classes = [permissions.AllowAny]
@@ -137,7 +131,6 @@ class ItemCreateView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Item.objects.filter(registry__user=self.request.user)
         #return Item.objects.filter(registry__user=user)
-
 
 
 @api_view(['GET'])
