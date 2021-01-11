@@ -103,7 +103,7 @@ class RegistryListView(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        return Registry.objects.filter(user!=self.request.user)
+        return Registry.objects.exclude(user=self.request.user)
 
 
 class RegistryDetailView(generics.RetrieveUpdateDestroyAPIView):

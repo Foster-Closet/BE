@@ -6,11 +6,12 @@ class User(AbstractUser):
 
 
 class Registry(models.Model):
+    
     user = models.ForeignKey(to='User', on_delete=models.CASCADE, related_name='registries')
     time_made = models.DateTimeField(auto_now_add=True, null=True)
-    ##unique name for registry
 
 class Message(models.Model):
+
     sender = models.ForeignKey(to='User', blank=True, on_delete=models.CASCADE, related_name='messages_sent' ) 
     receiver = models.ForeignKey(to='User', null=True, on_delete=models.CASCADE, related_name='messages_received')
     message = models.TextField(max_length=255)
@@ -24,13 +25,18 @@ class Item(models.Model):
         REQUESTED_ITEMS = 'requestedItems', ('requestedItems')
         IN_PROGRESS = 'inProgress', ('inProgress')
         FULFILLED = 'fulfilled', ('fulfilled')
+    
+        
 
     registry = models.ForeignKey(to='Registry', on_delete=models.CASCADE, related_name='items')
     #category = models.ForeignKey(to='Category', related_name='items')
     description = models.CharField(null=True, blank=True, max_length=100)
     donor = models.ForeignKey(to='User', on_delete=models.SET_NULL, null=True, blank=True)
     time_fulfilled = models.DateTimeField(null=True, auto_now=True)
+
+
     status = models.CharField(max_length=15, choices=Status.choices, default=Status.REQUESTED_ITEMS)
+    # urgency = models.CharField(max_length=15, choiceds = Urgency.choices, default = )
 
 
     #any additional information needed about items, should null by default
