@@ -52,7 +52,7 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 
 |      | Message |         |      |
 | -------- | -------- | -------- | -------- |
-| POST | `api/message/` | Creates and sends a `message`| {"reciever":<user_id>, "message":"<string>"}  |
+| POST | `api/message/` | Creates and sends a `message`| {"receiver":<user_id>, "message":"<string>"}  |
 | GET | `api/message/` | Returns logged-in user's `Messages` |  |
 
 
@@ -98,7 +98,7 @@ Formatting taken from: https://raw.githubusercontent.com/Team-Fourtress/brkly/ma
 
 ```
     sender - logged-in user
-    reciever - mandatory, id of user
+    receiver - mandatory, id of user
     message - mandatory
     time_made 
     url - mandatory
