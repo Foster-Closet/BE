@@ -113,8 +113,7 @@ class RegistryDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         #return Registry.objects.filter(registry__user=self.request.user)
-        return self.request.user.registries.all()
-        #return user.registries.all()
+        return Registry.objects.all()
 
 
 class ItemCreateView(generics.ListCreateAPIView): 
