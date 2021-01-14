@@ -20,8 +20,7 @@ from api import views as api_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/user', api_views.UserCreateView.as_view()),
-    path('api/user/<int:pk>', api_views.UserDetailView.as_view()),
+    #path('api/user/<int:pk>', api_views.UserDetailView.as_view()),
     #path('api/user/me/', api_views.current_user),
     path('api/registry/', api_views.RegistryListCreateView.as_view()),
     path('api/registry/all/', api_views.RegistryListView.as_view()),

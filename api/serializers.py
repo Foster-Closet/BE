@@ -2,16 +2,12 @@ from rest_framework import serializers
 from core.models import User, Registry, Item, Message
 from djoser.serializers import UserCreateSerializer as BaseUserRegistrationSerializer
 
-#https://stackoverflow.com/questions/49095424/customize-the-djoser-create-user-endpoint
-class UserRegistrationSerializer(BaseUserRegistrationSerializer):
-    class Meta(BaseUserRegistrationSerializer.Meta):
-        fields = ('phone_number',)
 
 class UserSerializer(serializers.ModelSerializer):
    
     class Meta:
         model = User
-        fields = ['id', 'username', 'password', 'phone_number' ]
+        fields = ['id', 'username', 'password', 'first_name', 'zipcode', 'email', 'phone_number']
         
 class MessageSerializer(serializers.ModelSerializer):
     
@@ -53,10 +49,6 @@ class RegistrySerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         items_data = validated_data.pop('items')
-        # Unless the application properly enforces that this field is
-        # always set, the following could raise a `DoesNotExist`, which
-        # would need to be handled.
-        #original_items = instance.items
         for item_data in items_data:
             Item.objects.create(registry=instance, **item_data)
         return instance
