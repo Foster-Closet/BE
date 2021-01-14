@@ -45,6 +45,7 @@ def message_list(request):
 
 class RegistryListCreateView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    serializer_class = RegistrySerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
