@@ -162,12 +162,11 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL = 'core.User'
 
-# Djoser user settings
-# DJOSER = {
-#     'SERIALIZERS': {
-#          'user_create': 'api.serializers.UserSerializer'
-#     }
-# }
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'api.serializers.UserRegistrationSerializer'
+    }
+}
   
 
 # Debug toolbar config

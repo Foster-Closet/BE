@@ -3,6 +3,10 @@ from core.models import User, Registry, Item, Message
 from djoser.serializers import UserCreateSerializer as BaseUserRegistrationSerializer
 
 
+class UserRegistrationSerializer(BaseUserRegistrationSerializer):
+    class Meta(BaseUserRegistrationSerializer.Meta):
+        fields = ('phone_number', 'zipcode', 'id', 'email', 'first_name', 'username',  'password', )
+
 class UserSerializer(serializers.ModelSerializer):
    
     class Meta:
